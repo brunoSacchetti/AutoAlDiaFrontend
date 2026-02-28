@@ -1,0 +1,160 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0b1120;
+  color: #f9fafb;
+  font-family: system-ui, sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.navbar {
+  background: #111827;
+  border-bottom: 1px solid #1f2937;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.nav-links span {
+  margin-left: 1.5rem;
+  color: #9ca3af;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.page-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;    
+}
+
+.page-subtitle {
+  color: #9ca3af;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: #111827;
+  border: 1px solid #1f2937;
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stats-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.stats-title {
+  color: #9ca3af;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+
+.vehicles-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.vehicle-card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.badges {
+  margin-top: 1rem;
+}
+
+.badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #22c55e;
+}
+
+.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+}
+
+.danger {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.sidebar > * {
+  margin-bottom: 1.5rem;
+}
+
+.alert {
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.maintenance-item {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/* 📱 RESPONSIVE */
+
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
