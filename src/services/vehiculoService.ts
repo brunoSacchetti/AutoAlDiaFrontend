@@ -6,7 +6,7 @@ export const vehiculoService = {
      * Obtiene todos los vehículos asociados a un usuario específico.
      */
     async getByUsuarioId(usuarioId: number): Promise<Vehiculo[]> {
-        const response = await api.get<Vehiculo[]>(`/vehiculos/usuario/${usuarioId}`);
+        const response = await api.get<Vehiculo[]>(`/vehiculos/usuarioVehiculo/${usuarioId}`);
         return response.data;
     },
 
