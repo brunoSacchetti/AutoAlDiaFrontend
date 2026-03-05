@@ -1,0 +1,58 @@
+.stats-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.stats-card--primary::before {
+    background: var(--color-primary);
+}
+
+.stats-card--accent::before {
+    background: var(--color-accent);
+}
+
+.stats-card--success::before {
+    background: var(--color-success);
+}
+
+.stats-card--warning::before {
+    background: var(--color-warning);
+}
+
+.stats-card--danger::before {
+    background: var(--color-danger);
+}
+
+.stats-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-3);
+}
+
+.stats-card__icon {
+    font-size: 1.5rem;
+}
+
+.stats-card__value {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-bottom: var(--space-1);
+}
+
+.stats-card__title {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    font-weight: 500;
+}

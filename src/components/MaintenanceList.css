@@ -1,0 +1,43 @@
+.maintenance-list__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+}
+
+.maintenance-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.maintenance-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.maintenance-item__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-width: 0;
+}
+
+.maintenance-item__name {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.maintenance-item__meta {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+}
+
+.maintenance-item__cost {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-success);
+    white-space: nowrap;
+    margin-left: var(--space-4);
+}
