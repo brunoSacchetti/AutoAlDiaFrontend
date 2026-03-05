@@ -89,11 +89,18 @@ export const VehiculoDetail = () => {
             </Link>
             
             <div className="detail-header">
-              <div>
-                <h1 className="page-title">{vehiculo.marca} {vehiculo.modelo}</h1>
-                <p className="page-subtitle">
-                  {vehiculo.anio} • {vehiculo.patente || 'Sin Patente'}
-                </p>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-4)' }}>
+                {vehiculo.url_foto ? (
+                  <img src={vehiculo.url_foto} alt={vehiculo.marca} style={{ width: '64px', height: '64px', borderRadius: 'var(--radius-md)', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '64px', height: '64px', borderRadius: 'var(--radius-md)', backgroundColor: 'var(--color-primary-light)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '2rem' }}>🚗</div>
+                )}
+                <div>
+                  <h1 className="page-title" style={{ marginBottom: 'var(--space-1)' }}>{vehiculo.marca} {vehiculo.modelo}</h1>
+                  <p className="page-subtitle" style={{ margin: 0 }}>
+                    {vehiculo.anio} • {vehiculo.patente || 'Sin Patente'}
+                  </p>
+                </div>
               </div>
               <div className="detail-actions">
                 <Link to={`/vehiculos/editar/${vehiculo.id}`} className="btn btn-primary">

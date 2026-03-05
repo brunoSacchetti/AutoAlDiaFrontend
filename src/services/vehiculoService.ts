@@ -14,7 +14,7 @@ export const vehiculoService = {
      * Obtiene un vehículo específico por su ID.
      */
     async getById(id: number): Promise<Vehiculo> {
-        const response = await api.get<Vehiculo>(`/vehiculos/${id}`);
+        const response = await api.get<Vehiculo>(`/vehiculos/obtener/${id}`);
         return response.data;
     },
 

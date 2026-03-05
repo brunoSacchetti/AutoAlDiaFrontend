@@ -1,17 +1,24 @@
+import { Link } from 'react-router-dom'
 import './VehicleCard.css'
 
 export interface VehicleCardProps {
+  id: number;
   name: string;
   year: string;
   plate: string;
   km: string;
+  imageUrl?: string;
 }
 
-export const VehicleCard = ({ name, year, plate, km }: VehicleCardProps) => {
+export const VehicleCard = ({ id, name, year, plate, km, imageUrl }: VehicleCardProps) => {
   return (
-    <div className="vehicle-card card card-interactive">
+    <Link to={`/vehiculos/${id}`} className="vehicle-card card card-interactive" style={{ textDecoration: 'none', color: 'inherit' }}>
       <div className="vehicle-card__header">
-        <div className="vehicle-card__avatar">🚗</div>
+        {imageUrl ? (
+          <img src={imageUrl} alt={name} className="vehicle-card__avatar" style={{ objectFit: 'cover' }} />
+        ) : (
+          <div className="vehicle-card__avatar">🚗</div>
+        )}
         <div className="vehicle-card__info">
           <h3 className="vehicle-card__name">{name}</h3>
           <span className="vehicle-card__year">{year}</span>
@@ -33,6 +40,6 @@ export const VehicleCard = ({ name, year, plate, km }: VehicleCardProps) => {
         <span className="badge badge-success">Seguro Activo</span>
         <span className="badge badge-warning">VTV Próxima</span>
       </div>
-    </div>
+    </Link>
   )
 }

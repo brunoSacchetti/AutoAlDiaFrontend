@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Navbar } from '../../components/Navbar'
 import { VehicleCard } from '../../components/VehicleCard'
 import { StatsCard } from '../../components/StatsCard'
@@ -116,7 +117,7 @@ export const Dashboard = () => {
             <section className="vehicles-section animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <div className="section-header">
                 <h2 className="section-title">Mis Vehículos</h2>
-                <button className="btn btn-primary btn-sm">+ Agregar</button>
+                <Link to="/vehiculos/nuevo" className="btn btn-primary btn-sm">+ Agregar</Link>
               </div>
               
               {vehiculos.length === 0 ? (
@@ -124,17 +125,19 @@ export const Dashboard = () => {
                   <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-4)' }}>
                     No tenés ningún vehículo registrado aún.
                   </p>
-                  <button className="btn btn-primary">Registrar mi primer vehículo</button>
+                  <Link to="/vehiculos/nuevo" className="btn btn-primary">Registrar mi primer vehículo</Link>
                 </div>
               ) : (
                 <div className="vehicles-grid">
                   {vehiculos.map(v => (
                     <VehicleCard
                       key={v.id}
+                      id={v.id}
                       name={`${v.marca} ${v.modelo}`}
                       year={v.anio.toString()}
                       plate={v.patente || 'Sin patente'}
                       km={`${v.km_actual.toLocaleString('es-AR')} km`}
+                      imageUrl={v.url_foto || undefined}
                     />
                   ))}
                 </div>

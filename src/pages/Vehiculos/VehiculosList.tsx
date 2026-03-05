@@ -70,7 +70,16 @@ export const VehiculosList = () => {
                 <div key={vehiculo.id} className="card vehiculo-list-card">
                   <div className="vehiculo-list-card__header">
                     <div className="vehiculo-list-card__avatar">
-                      {vehiculo.marca.charAt(0)}{vehiculo.modelo.charAt(0)}
+                      {
+                        vehiculo.url_foto ? (
+                          <img src={vehiculo.url_foto} alt={vehiculo.marca} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-md)' }} />
+                        ) : (
+                          <>
+                            {vehiculo.marca.charAt(0)}
+                            {vehiculo.modelo.charAt(0)}
+                          </>
+                        )
+                      }
                     </div>
                     <div className="vehiculo-list-card__title">
                       <h3>{vehiculo.marca} {vehiculo.modelo}</h3>
