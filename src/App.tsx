@@ -6,7 +6,9 @@ import { Dashboard } from './pages/Dashboard/Dashboard'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { VehiculosList } from './pages/Vehiculos/VehiculosList'
 import { VehiculoForm } from './pages/Vehiculos/VehiculoForm'
-import { VehiculoDetail } from './pages/Vehiculos/VehiculoDetail' 
+import { VehiculoDetail } from './pages/Vehiculos/VehiculoDetail'
+import { MantenimientosList } from './pages/Mantenimientos/MantenimientosList'
+import { MantenimientoForm } from './pages/Mantenimientos/MantenimientoForm'
 
 function App() {
   return (
@@ -20,10 +22,15 @@ function App() {
           {/* App routes (Protected) */}
           <Route element={<ProtectedRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            
             <Route path="/vehiculos" element={<VehiculosList />} />
             <Route path="/vehiculos/nuevo" element={<VehiculoForm />} />
             <Route path="/vehiculos/editar/:id" element={<VehiculoForm />} />
             <Route path="/vehiculos/:id" element={<VehiculoDetail />} />
+
+            <Route path="/mantenimientos" element={<MantenimientosList />} />
+            <Route path="/mantenimientos/nuevo" element={<MantenimientoForm />} />
+            <Route path="/mantenimientos/editar/:id" element={<MantenimientoForm />} />
           </Route>
 
           {/* Default redirect */}

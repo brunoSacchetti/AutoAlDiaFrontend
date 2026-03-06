@@ -6,7 +6,15 @@ export const mantenimientoService = {
      * Obtiene todos los mantenimientos asociados a un vehículo específico.
      */
     async getByVehiculoId(vehiculoId: number): Promise<Mantenimiento[]> {
-        const response = await api.get<Mantenimiento[]>(`/mantenimiento/vehiculo/${vehiculoId}`);
+        const response = await api.get<Mantenimiento[]>(`/mantenimiento/vehiculo/${vehiculoId}/ordenado`);
+        return response.data;
+    },
+
+    /**
+     * Obtiene un registro puntual de mantenimiento por ID.
+     */
+    async getById(id: number): Promise<Mantenimiento> {
+        const response = await api.get<Mantenimiento>(`/mantenimiento/obtener/${id}`);
         return response.data;
     },
 

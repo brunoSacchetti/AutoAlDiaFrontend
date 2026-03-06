@@ -1,0 +1,8 @@
+/* Reuses layout utilities from global.css and VehiculoForm.css */
+/* Specifically for textarea */
+
+textarea.form-input {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
