@@ -9,6 +9,7 @@ import { VehiculoForm } from './pages/Vehiculos/VehiculoForm'
 import { VehiculoDetail } from './pages/Vehiculos/VehiculoDetail'
 import { MantenimientosList } from './pages/Mantenimientos/MantenimientosList'
 import { MantenimientoForm } from './pages/Mantenimientos/MantenimientoForm'
+import { RecordatorioForm } from './pages/Recordatorios/RecordatorioForm'
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             <Route path="/mantenimientos" element={<MantenimientosList />} />
             <Route path="/mantenimientos/nuevo" element={<MantenimientoForm />} />
             <Route path="/mantenimientos/editar/:id" element={<MantenimientoForm />} />
+
+            <Route path="/recordatorios/nuevo" element={<RecordatorioForm />} />
+            <Route path="/recordatorios/editar/:id" element={<RecordatorioForm />} />
           </Route>
 
           {/* Default redirect */}

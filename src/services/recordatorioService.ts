@@ -11,6 +11,14 @@ export const recordatorioService = {
     },
 
     /**
+     * Obtiene un recordatorio puntual por ID.
+     */
+    async getById(id: number): Promise<RecordatorioMantenimiento> {
+        const response = await api.get<RecordatorioMantenimiento>(`/recordatorio/obtener/${id}`);
+        return response.data;
+    },
+
+    /**
      * Obtiene todos los recordatorios asociados a un vehículo específico.
      */
     async getByVehiculoId(vehiculoId: number): Promise<RecordatorioMantenimiento[]> {

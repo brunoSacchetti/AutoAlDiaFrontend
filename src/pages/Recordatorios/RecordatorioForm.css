@@ -1,0 +1,14 @@
+/* Reutilizamos gran parte del CSS base de los formularios (que está en global.css) */
+/* Agregamos solo ajustes específicos si hacen falta */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+}
+
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
