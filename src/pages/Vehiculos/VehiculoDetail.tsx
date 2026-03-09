@@ -7,8 +7,9 @@ import { recordatorioService } from '../../services/recordatorioService'
 import { useAuth } from '../../context/AuthContext'
 import { ConfirmModal } from '../../components/ui/ConfirmModal'
 import { MaintenanceList } from '../../components/MaintenanceList'
-import { AlertsPanel } from '../../components/AlertsPanel'
+import { RecordatoriosPanel } from '../../components/RecordatoriosPanel'
 import type { Vehiculo, Mantenimiento, RecordatorioMantenimiento } from '../../types'
+import { EstadoRecordatorio } from '../../types'
 import './VehiculoDetail.css'
 
 export const VehiculoDetail = () => {
@@ -64,6 +65,32 @@ export const VehiculoDetail = () => {
     } catch (error) {
       console.error('Error deleting vehicle:', error)
       alert('Ocurrió un error al eliminar el vehículo.')
+    }
+  }
+
+  const handleUpdateRecordatorioStatus = async (id: number, nuevoEstado: EstadoRecordatorio) => {
+    try {
+      // Optimizacion UI: actualizar estado localmente primero
+      setRecordatorios(prev => 
+        prev.map(r => r.id === id ? { ...r, estado: nuevoEstado } : r)
+      )
+      await recordatorioService.update(id, { estado: nuevoEstado } as any)
+    } catch (error) {
+      console.error('Error updating recordatorio status:', error)
+      alert('Ocurrió un error al actualizar el estado del recordatorio.')
+      // Revertir en caso de error (idealmente deberíamos refetchear o guardar el estado anterior)
+    }
+  }
+
+  const handleDeleteRecordatorio = async (id: number) => {
+    if (!window.confirm('¿Estás seguro de que deseás eliminar este recordatorio?')) return
+    
+    try {
+      await recordatorioService.delete(id)
+      setRecordatorios(prev => prev.filter(r => r.id !== id))
+    } catch (error) {
+      console.error('Error deleting recordatorio:', error)
+      alert('Ocurrió un error al eliminar el recordatorio.')
     }
   }
 
@@ -174,7 +201,12 @@ export const VehiculoDetail = () => {
 
             {activeTab === 'alertas' && (
               <div>
-                <AlertsPanel recordatorios={recordatorios} vehiculos={[vehiculo]} />
+                <RecordatoriosPanel 
+                  recordatorios={recordatorios} 
+                  vehiculo={vehiculo} 
+                  onStatusChange={handleUpdateRecordatorioStatus}
+                  onDelete={handleDeleteRecordatorio}
+                />
               </div>
             )}
           </div>
