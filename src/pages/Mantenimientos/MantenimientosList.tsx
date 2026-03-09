@@ -32,7 +32,8 @@ export const MantenimientosList = () => {
         
         // Fetch maintenance for each vehicle
         const mantsPromises = vehs.map(async (v) => {
-          return await mantenimientoService.getByVehiculoId(v.id)
+          const mants = await mantenimientoService.getByVehiculoId(v.id)
+          return mants.map(m => ({...m, vehiculoId: v.id}))
         })
 
         const mantsArrays = await Promise.all(mantsPromises)

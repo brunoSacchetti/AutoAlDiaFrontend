@@ -42,7 +42,8 @@ export const VehiculoDetail = () => {
 
         // Fetch related data
         const mants = await mantenimientoService.getByVehiculoId(vehData.id)
-        setMantenimientos(mants)
+        const mantsWithId = mants.map(m => ({ ...m, vehiculoId: vehData.id }))
+        setMantenimientos(mantsWithId)
 
         const recs = await recordatorioService.getByVehiculoId(vehData.id)
         setRecordatorios(recs)

@@ -43,7 +43,8 @@ export const Dashboard = () => {
 
         const maintPromises = vehs.map(async (v) => {
           const mants = await mantenimientoService.getByVehiculoId(v.id)
-          allMantenimientos = [...allMantenimientos, ...mants]
+          const mantsWithId = mants.map(m => ({ ...m, vehiculoId: v.id }))
+          allMantenimientos = [...allMantenimientos, ...mantsWithId]
           
           try {
              const gastoVehiculo = await mantenimientoService.getGastoTotal(v.id)
