@@ -8,7 +8,9 @@ import { useAuth } from '../../context/AuthContext'
 import { ConfirmModal } from '../../components/ui/ConfirmModal'
 import { MaintenanceList } from '../../components/MaintenanceList'
 import { RecordatoriosPanel } from '../../components/RecordatoriosPanel'
-import type { Vehiculo, Mantenimiento, RecordatorioMantenimiento } from '../../types'
+import { DocumentosPanel } from '../../components/DocumentosPanel'
+import { documentoService } from '../../services/documentoService'
+import type { Vehiculo, Mantenimiento, RecordatorioMantenimiento, Documento } from '../../types'
 import { EstadoRecordatorio } from '../../types'
 import './VehiculoDetail.css'
 
@@ -20,9 +22,10 @@ export const VehiculoDetail = () => {
   const [vehiculo, setVehiculo] = useState<Vehiculo | null>(null)
   const [mantenimientos, setMantenimientos] = useState<Mantenimiento[]>([])
   const [recordatorios, setRecordatorios] = useState<RecordatorioMantenimiento[]>([])
+  const [documentos, setDocumentos] = useState<Documento[]>([])
   const [loading, setLoading] = useState(true)
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState<'info' | 'mantenimientos' | 'alertas'>('info')
+  const [activeTab, setActiveTab] = useState<'info' | 'mantenimientos' | 'alertas' | 'documentos'>('info')
 
   useEffect(() => {
     const fetchVehiculoData = async () => {
@@ -47,6 +50,9 @@ export const VehiculoDetail = () => {
 
         const recs = await recordatorioService.getByVehiculoId(vehData.id)
         setRecordatorios(recs)
+
+        const docs = await documentoService.getByVehiculoId(vehData.id)
+        setDocumentos(docs)
       } catch (error) {
         console.error('Error fetching vehicle detail:', error)
         navigate('/vehiculos')
@@ -92,6 +98,18 @@ export const VehiculoDetail = () => {
     } catch (error) {
       console.error('Error deleting recordatorio:', error)
       alert('Ocurrió un error al eliminar el recordatorio.')
+    }
+  }
+
+  const handleDeleteDocumento = async (id: number) => {
+    if (!window.confirm('¿Estás seguro de que deseás eliminar este documento? Esta acción no se puede deshacer.')) return
+    
+    try {
+      await documentoService.delete(id)
+      setDocumentos(prev => prev.filter(d => d.id !== id))
+    } catch (error) {
+      console.error('Error deleting documento:', error)
+      alert('Ocurrió un error al eliminar el documento.')
     }
   }
 
@@ -164,6 +182,12 @@ export const VehiculoDetail = () => {
             >
               Alertas ({recordatorios.length})
             </button>
+            <button 
+              className={`tab ${activeTab === 'documentos' ? 'active' : ''}`}
+              onClick={() => setActiveTab('documentos')}
+            >
+              Documentación ({documentos.length})
+            </button>
           </div>
 
           <div className="tab-content animate-fade-in" style={{ animationDelay: '0.2s' }}>
@@ -207,6 +231,16 @@ export const VehiculoDetail = () => {
                   vehiculo={vehiculo} 
                   onStatusChange={handleUpdateRecordatorioStatus}
                   onDelete={handleDeleteRecordatorio}
+                />
+              </div>
+            )}
+
+            {activeTab === 'documentos' && (
+              <div>
+                <DocumentosPanel 
+                  documentos={documentos} 
+                  vehiculo={vehiculo} 
+                  onDelete={handleDeleteDocumento}
                 />
               </div>
             )}
